@@ -1,0 +1,10 @@
+<div class="bg-gray-800 p-6 border-r-2" id="sidebar">
+  <h3 class="text-lg text-white font-semibold">GifsApp</h3>
+  <hr class="my-2">
+  <div class="flex flex-col items-start">
+    <button *ngFor="let tag of tags"
+      class="w-full hover:bg-gray-600 bg-white text-gray-800 font-semibold py-2 px-4 rounded-full mt-1 mb-2 hover:-translate-y-0.5 transition motion-reduce:hover:translate-y-0 motion-reduce:transition-none">
+      {{tag | titlecase}}
+    </button>
+  </div>
+</div>
