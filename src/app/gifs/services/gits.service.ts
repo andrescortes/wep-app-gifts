@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Gif, SearchResponse } from '../interfaces/gifs';
 
 const GIPS_API_KEY = 'NackW76ET7toI4tpjk5Lr6EFJ62qUHIk';
 
@@ -7,10 +8,14 @@ const GIPS_API_KEY = 'NackW76ET7toI4tpjk5Lr6EFJ62qUHIk';
   providedIn: 'root'
 })
 export class GitsService {
+  public gifList: Gif[] = [];
+
   private _tagHistory: string[] = [];
   private serviceUrl: string = 'https://api.giphy.com/v1/gifs';
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {
+    this.loadItemLocalStorage();
+   }
 
   get tagHistory(): string[] {
     return [...this._tagHistory];//copy of array from _tagHistory
@@ -19,14 +24,13 @@ export class GitsService {
   searchTag(tag: string): void {
     if (tag.length === 0) return;
     this.orgnazeTagHistory(tag);
-    console.log(this._tagHistory);
     const params = new HttpParams()
       .set('api_key', GIPS_API_KEY)
       .set('q', tag)
-      .set('limit', '3');
-    this.http.get(`${this.serviceUrl}/search`, { params })
+      .set('limit', '10');
+    this.http.get<SearchResponse>(`${this.serviceUrl}/search`, { params })
       .subscribe(res => {
-        console.log(res);
+        this.gifList = res.data;
       });
   }
 
@@ -37,5 +41,18 @@ export class GitsService {
     }
     this._tagHistory.unshift(tag);
     this._tagHistory = this._tagHistory.slice(0, 10);
+    this.saveLocalStorage();
   }
+
+  private saveLocalStorage(): void {
+    localStorage.setItem('history', JSON.stringify(this._tagHistory));
+  }
+
+  private loadItemLocalStorage(): void {
+    if (!localStorage.getItem('history')) return;
+    this._tagHistory = JSON.parse(localStorage.getItem('history')!);
+    if (this._tagHistory.length === 0) return;
+    this.searchTag(this._tagHistory[0]);
+  }
+
 }

@@ -14,4 +14,8 @@ export class SidebarComponent {
   get tags(): string[] {
     return this.gitsService.tagHistory;
   }
+
+  searchTag(tag: string): void {
+    this.gitsService.searchTag(tag);
+  }
 }

@@ -9,9 +9,9 @@
     "build:href": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "delete:docs": "del-cli -f docs",
+    "delete:docs": "del-cli -f docs/*",
     "delete:dist": "del-cli -f dist",
-    "copy:dist": "copyfiles dist/bases/* ./docs -f"
+    "copy:dist": "copyfiles dist/gifs-app/* ./docs -f"
   },
   "private": true,
   "dependencies": {
