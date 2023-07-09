@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center">
+  <img
+  class="w-full object-cover animate fadeIn duration-700 "
+  [src]="url"
+  [alt]="title"
+  (load)="onLoad()"
+  [ngStyle]="{ 'display': hasLoaded ? '' : 'none' }"
+  >
+
+  <img
+  *ngIf="!hasLoaded"
+  class="w-32 h-8 object-cover "
+  src="assets/three-dots.svg"
+  [alt]="title"
+  >
+
+  <div class="text-xl">
+    <p>{{ title | titlecase}}</p>
+  </div>
+</div>

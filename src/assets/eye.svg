@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle id="sun" cx="100" cy="100" r="10" fill="#ffdb00">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="5s" repeatCount="indefinite" />
+  </circle>
+  <circle id="planet1" cx="130" cy="100" r="5" fill="#ff6f00">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="3s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0" to="1" dur="1s" begin="0s" fill="freeze" />
+    <animate attributeName="opacity" from="1" to="0" dur="1s" begin="2s" fill="freeze" />
+  </circle>
+  <circle id="planet2" cx="160" cy="100" r="8" fill="#00c3ff">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="4s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1s" fill="freeze" />
+    <animate attributeName="opacity" from="1" to="0" dur="1s" begin="3s" fill="freeze" />
+  </circle>
+  <circle id="planet3" cx="190" cy="100" r="6" fill="#00ff8c">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="0" to="1" dur="1s" begin="2s" fill="freeze" />
+    <animate attributeName="opacity" from="1" to="0" dur="1s" begin="4s" fill="freeze" />
+  </circle>
+  <path id="comet" d="M90 60 L110 90 L90 120" fill="none" stroke="#ffffff" stroke-width="2">
+    <animateMotion dur="6s" repeatCount="indefinite">
+      <mpath href="#orbit" />
+    </animateMotion>
+  </path>
+  <path id="orbit" d="M100 75 A25 25 0 0 1 100 125 A25 25 0 0 1 100 75" fill="none" />
+</svg>
